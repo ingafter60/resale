@@ -10,7 +10,7 @@
 	<h1>Produc List</h1>
 
 	{% for product in product_list %}
-		<h2>{{ product }}</h2>
+		<h2><a href="{% url 'products:product_detail' product.slug %}">{{ product }}</a></h2>
 	{% endfor %}
 		
 </body>
