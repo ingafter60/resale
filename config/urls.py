@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-	path('', include('product.urls')),
+	path('products/', include('product.urls')),
    path('admin/', admin.site.urls),
 ] 
 # Serving static files during development

@@ -1,0 +1,17 @@
+<!-- product/templates/
+	Product/product_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Produc List</title>
+</head>
+<body>
+	
+	<h1>Produc List</h1>
+
+	{% for product in product_list %}
+		<h2>{{ product }}</h2>
+	{% endfor %}
+		
+</body>
+</html>
