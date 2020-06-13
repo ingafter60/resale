@@ -17,15 +17,22 @@
 					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at {{product_detail.created}}, Ad ID: 987654321</p>
 					<div class="flexslider">
 						<ul class="slides">
-							<li data-thumb="images/ss1.jpg' %}">
-								<img src="{% static 'images/ss1.jpg' %}" />
-							</li>
-							<li data-thumb="images/ss2.jpg' %}">
+							
+							{% if product_images %}
+								{% for image in product_images %}
+								<li data-thumb="{{image.image.url}}">
+									<img src="{{image.image.url}}" />
+								</li>
+								{% endfor %}
+							{% else %}
+							<p>No product image found.</p>
+							{% endif %}
+							<!-- <li data-thumb="images/ss2.jpg' %}">
 								<img src="{% static 'images/ss2.jpg' %}" />
 							</li>
 							<li data-thumb="images/ss3.jpg' %}">
 								<img src="{% static 'images/ss3.jpg' %}" />
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<!-- FlexSlider -->
