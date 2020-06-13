@@ -36,8 +36,9 @@ class Product(models.Model):
 	description = models.TextField(max_length=500)
 	condition 	= models.CharField(max_length=100, choices=CONDITION_TYPE)
 	category 	= models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
-	brand 		= models.ForeignKey('Brand' , on_delete=models.SET_NULL , null=True)
+	brand 		= models.ForeignKey('Brand' , on_delete=models.SET_NULL, null=True)
 	price 		= models.DecimalField(max_digits=10, decimal_places=2)
+	image 		= models.ImageField(upload_to='main_product/', blank=True, null=True)
 	created 		= models.DateTimeField(default=timezone.now)
 	slug 			= models.SlugField(blank=True, null=True)
 

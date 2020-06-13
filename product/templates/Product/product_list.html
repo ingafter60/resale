@@ -445,33 +445,9 @@
 						</form>
 					</div>
 					
-					<div class="range">
-						<h3 class="sear-head">Price range</h3>
-						<ul class="dropdown-menu6">
-							<li>
-								
-								<div id="slider-range"></div>
-								<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-							</li>
-						</ul>
-						<!---->
-						<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
-						<script type='text/javascript'>//<![CDATA[
-						$(window).load(function(){
-						$( "#slider-range" ).slider({
-									range: true,
-									min: 0,
-									max: 9000,
-									values: [ 50, 6000 ],
-									slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-									}
-						});
-						$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-						});//]]>
-						</script>
-						
-					</div>
-					<div class="featured-ads">
+					<!-- Price range removed -->
+
+					<!-- <div class="featured-ads">
 						<h2 class="sear-head fer">Featured Ads</h2>
 						<div class="featured-ad">
 							<a href="single.html">
@@ -510,38 +486,39 @@
 							</a>
 						</div>
 						<div class="clearfix"></div>
-					</div>
+					</div> -->
+
 				</div>
 				<div class="ads-display col-md-9">
 					<div class="wrapper">
 						<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 							<ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
-								<li role="presentation" class="active">
+								<!-- <li role="presentation" class="active">
 									<a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
 										<span class="text">All Ads</span>
 									</a>
-								</li>
-								<li role="presentation" class="next">
+								</li> -->
+								<!-- <li role="presentation" class="next">
 									<a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
 										<span class="text">Ads with Photos</span>
 									</a>
-								</li>
-								<li role="presentation">
+								</li> -->
+								<!-- <li role="presentation">
 									<a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
 										<span class="text">Company</span>
 									</a>
-								</li>
+								</li> -->
 							</ul>
 							<div id="myTabContent" class="tab-content">
 								<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 									<div>
 										<div id="container">
-											<div class="view-controls-list" id="viewcontrols">
+											<!-- <div class="view-controls-list" id="viewcontrols">
 												<label>view :</label>
 												<a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
 												<a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
-											</div>
-											<div class="sort">
+											</div> -->
+											<!-- <div class="sort">
 												<div class="sort-by">
 													<label>Sort By : </label>
 													<select>
@@ -550,9 +527,10 @@
 														<option value="">Price: Rs High to Low</option>
 													</select>
 												</div>
-											</div>
+											</div> -->
 											<div class="clearfix"></div>
 											<ul class="list">
+												
 												<a href="single.html">
 													<li>
 														<img src="{% static 'images/m1.jpg' %}" title="" alt="" />
@@ -568,7 +546,8 @@
 														<div class="clearfix"></div>
 													</li>
 												</a>
-												<a href="single.html">
+												
+												<!-- <a href="single.html">
 													<li>
 														<img src="{% static 'images/m2.jpg' %}" title="" alt="" />
 														<section class="list-left">
@@ -958,12 +937,12 @@
 														<div class="clearfix"></div>
 													</li>
 													<div class="clearfix"></div>
-												</a>
+												</a> -->
 											</ul>
 										</div>
 									</div>
 								</div>
-								<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+								<!-- <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
 									<div>
 										<div id="container">
 											<div class="view-controls-list" id="viewcontrols">
@@ -1197,8 +1176,8 @@
 											</ul>
 										</div>
 									</div>
-								</div>
-								<div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+								</div> -->
+								<!-- <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
 									<div>
 										<div id="container">
 											<div class="view-controls-list" id="viewcontrols">
@@ -1218,11 +1197,12 @@
 											</div>
 											<div class="clearfix"></div>
 											<ul class="list">
+
 												<a href="single.html">
 													<li>
 														<img src="{% static 'images/m1.jpg' %}" title="" alt="" />
 														<section class="list-left">
-															<h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
+															<h5 class="title">..There are many variations of passages of Lorem Ipsum</h5>
 															<span class="adprice">$290</span>
 															<p class="catpath">Mobile Phones » Brand</p>
 														</section>
@@ -1233,6 +1213,7 @@
 														<div class="clearfix"></div>
 													</li>
 												</a>
+
 												<a href="single.html">
 													<li>
 														<img src="{% static 'images/m2.jpg' %}" title="" alt="" />
@@ -1443,7 +1424,6 @@
 														<div class="clearfix"></div>
 													</li>
 												</a>
-												
 												<a href="single.html">
 													<li>
 														<img src="{% static 'images/m4.jpg' %}" title="" alt="" />
@@ -1504,7 +1484,6 @@
 														<div class="clearfix"></div>
 													</li>
 												</a>
-												
 												<a href="single.html">
 													<li>
 														<img src="{% static 'images/m11.jpg' %}" title="" alt="" />
@@ -1539,7 +1518,7 @@
 											</ul>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<ul class="pagination pagination-sm">
 									<li><a href="#">Prev</a></li>
 									<li><a href="#">1</a></li>
