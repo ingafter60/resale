@@ -1,4 +1,5 @@
 # product/views.py
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from . models import Product, ProductImages 
 
@@ -12,7 +13,13 @@ def productlist(request):
 	# print(productlist)
 	# result: <QuerySet [<Product: Lenovo A588T>, <Product: iPhone 11 Pro>]>
 	# 2. Template to render
-	template = 'Product/product_list.html'	
+	template = 'Product/product_list.html'
+	
+	# pagination
+	paginator = Paginator(productlist, 2) # Show 25 contacts per page
+	page = request.GET.get('page')
+	productlist = paginator.get_page(page)	
+
 	# 3. Store the information in variable context
 	context = {'product_list': productlist}
 	# 4. Render the informatio to template
@@ -34,3 +41,11 @@ def productdetail(request, product_slug):
 	context = {'product_detail': productdetail, 'product_images' : productimages}
 	# 4. Render the informatio to template
 	return render(request, template, context)
+
+def listing(request):
+    contact_list = Contacts.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+    return render(request, 'list.html', {'contacts': contacts})	
