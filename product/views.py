@@ -4,6 +4,7 @@ from django.shortcuts import render
 from . models import Product, ProductImages, Category 
 from django.db.models import Count
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def productlist(request, category_slug=None):
@@ -17,7 +18,10 @@ def productlist(request, category_slug=None):
 	if category_slug:
 		# If there is, get the category slug objects and use 
 		# them with category_slug
-		category = Category.objects.get(slug=category_slug)
+		# category = Category.objects.get(slug=category_slug)
+		# NEW
+		category = get_object_or_404(Category ,slug=category_slug)
+
 		# Filter the products (productlist based on the category)
 		productlist = productlist.filter(category=category)
 
@@ -58,6 +62,10 @@ def productdetail(request, product_slug):
 	## 4 STEPS TO LOAD AND DISPLAY THE INFORMATION FROM THE DB
 	# 1. Get product by id from db
 	productdetail = Product.objects.get(slug=product_slug)
+	
+	# NEW
+	productdetail = Product.objects.get(slug=product_slug)
+
 	# test
 	print(product_slug)
 	# result: <QuerySet [<Product: Lenovo A588T>, <Product: iPhone 11 Pro>]>
