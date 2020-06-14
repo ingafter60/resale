@@ -38,7 +38,7 @@ class Product(models.Model):
 	)
 
 	## It contains all the products information
-	name 			= models.CharField(max_length=100)
+	name 		= models.CharField(max_length=100)
 	owner 		= models.ForeignKey(User, on_delete=models.CASCADE)
 	description = models.TextField(max_length=500)
 	condition 	= models.CharField(max_length=100, choices=CONDITION_TYPE)
@@ -46,8 +46,8 @@ class Product(models.Model):
 	brand 		= models.ForeignKey('Brand' , on_delete=models.SET_NULL, null=True)
 	price 		= models.DecimalField(max_digits=10, decimal_places=2)
 	image 		= models.ImageField(upload_to='main_product/', blank=True, null=True)
-	created 		= models.DateTimeField(default=timezone.now)
-	slug 			= models.SlugField(blank=True, null=True)
+	created 	= models.DateTimeField(default=timezone.now)
+	slug 		= models.SlugField(blank=True, null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.slug and self.name:
