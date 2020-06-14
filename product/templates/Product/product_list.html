@@ -421,12 +421,15 @@
 			<div class="all-categories">
 				
 				<h3> Select your category and find the perfect ad</h3>
+				
 				<!-- category -->
 				<ul class="all-cat-list">
 					{% if category_list %}
 						{% for category in category_list %}
 							<li>
-								<a href="mobiles.html">{{category}} 
+								<a href="{% url 'products:product_list_category' category.slug %}">
+									{{category}} 
+								<!-- <a href="mobiles.html">{{category}}  -->
 									<span class="num-of-ads">{{category.total_products}}</span>
 								</a>
 							</li>
@@ -438,10 +441,20 @@
 				<!-- ends catetory -->
 
 			</div>
+
+			<!-- <ol class="breadcrumb" style="margin-bottom: 5px;">
+				<li><a href="index.html">Home</a></li>
+				<li class="active">All Ads</li>
+			</ol> -->
+
 			<ol class="breadcrumb" style="margin-bottom: 5px;">
 				<li><a href="index.html">Home</a></li>
 				<li class="active">All Ads</li>
+				{% if category %}
+					<li class="active" style="color: #F6C800;">{{category}}</li>
+				{% endif %}
 			</ol>
+
 			<div class="ads-grid">
 				<div class="side-bar col-md-3">
 					<div class="search-hotel">

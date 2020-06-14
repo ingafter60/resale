@@ -11,6 +11,14 @@ class Category(models.Model):
 	category_name 	= models.CharField(max_length=50)
 	image 			= models.ImageField(upload_to='category/', blank=True, null=True)
 	
+	# Add slug line: 15-20
+	slug 			= models.SlugField(blank=True, null=True)
+
+	def save(self, *args, **kwargs):
+		if not self.slug and self.category_name:
+			self.slug = slugify(self.category_name)
+		super(Category, self).save(*args, **kwargs)	
+
 	## Making correct plural of 'Categorys' to 'Categories'
 	class Meta:
 		verbose_name = 'category'
@@ -18,7 +26,6 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.category_name	
-
 
 
 # model name: Product

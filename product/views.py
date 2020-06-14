@@ -5,27 +5,32 @@ from . models import Product, ProductImages, Category
 from django.db.models import Count
 
 # Create your views here.
-def productlist(request):
-	
-	## 4 STEPS TO LOAD AND DISPLAY THE INFORMATION FROM THE DB
-	# 1. Get all products from db
+def productlist(request, category_slug=None):
+	# To get product by Category 
+	category = None
 	productlist  = Product.objects.all()
-	# categorylist = Category.objects.all()
 	categorylist = Category.objects.annotate(total_products=Count('product')) # total_products is based on the 'category rel with Product - One-to-Many'
-	# test
-	# print(productlist)
-	# result: <QuerySet [<Product: Lenovo A588T>, <Product: iPhone 11 Pro>]>
-	# 2. Template to render
-	template = 'Product/product_list.html'
-	
+
+
+	# To check if there is category slug
+	if category_slug:
+		# If there is, get the category slug objects and use 
+		# them with category_slug
+		category = Category.objects.get(slug=category_slug)
+		# Filter the products (productlist based on the category)
+		productlist = productlist.filter(category=category)
+
 	# pagination
 	paginator = Paginator(productlist, 2) # Show 25 contacts per page
 	page = request.GET.get('page')
 	productlist = paginator.get_page(page)	
+	template = 'Product/product_list.html'
 
-	# 3. Store the information in variable context
-	context = {'product_list': productlist, 'category_list': categorylist}
-	# 4. Render the informatio to template
+	context = {
+		'product_list' : productlist, 
+		'category_list': categorylist, 
+		'category'     : category,}
+
 	return render(request, template, context)
 
 
