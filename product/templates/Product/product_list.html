@@ -1,3 +1,5 @@
+<!-- product/templates/product/product_list.html -->
+
 {% extends "base.html" %}
 <!DOCTYPE html>
 {% load static %}
@@ -417,19 +419,24 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="all-categories">
+				
 				<h3> Select your category and find the perfect ad</h3>
+				<!-- category -->
 				<ul class="all-cat-list">
-					<li><a href="mobiles.html">Mobiles <span class="num-of-ads">(5,78,076)</span></a></li>
-					<li><a href="electronics-appliances.html">Electronics & Appliances  <span class="num-of-ads">(3,66,495)</span></a></li>
-					<li><a href="real-estate.html">Real Estate  <span class="num-of-ads">(45,450)</span></a></li>
-					<li><a href="furnitures.html">Furniture    <span class="num-of-ads">(1,77,145)</span></a></li>
-					<li><a href="pets.html">Pets   <span class="num-of-ads">(1,81,250)</span></a></li>
-					<li><a href="books-sports-hobbies.html">Books, Sports & Hobbies    <span class="num-of-ads">(66,822)</span></a></li>
-					<li><a href="fashion.html">Fashion   <span class="num-of-ads">(29,156)</span></a></li>
-					<li><a href="kids.html">Kids   <span class="num-of-ads">(25,699)</span></a></li>
-					<li><a href="services.html">Services   <span class="num-of-ads">(2,15,895)</span></a></li>
-					<li><a href="cars.html">Cars   <span class="num-of-ads">(2,15,306)</span></a></li>
+					{% if category_list %}
+						{% for category in category_list %}
+							<li>
+								<a href="mobiles.html">{{category}} 
+									<span class="num-of-ads">{{category.total_products}}</span>
+								</a>
+							</li>
+						{% endfor %}	
+					{% else %}
+						<p style="padding-left: 20px; color:#01A185;">No category found.</p>
+					{% endif %}
 				</ul>
+				<!-- ends catetory -->
+
 			</div>
 			<ol class="breadcrumb" style="margin-bottom: 5px;">
 				<li><a href="index.html">Home</a></li>
@@ -533,6 +540,7 @@
 
 				{% if product_list %}
 					{% for product in product_list %}
+					    <!-- http://localhost/products/ -->
 						<a href="{% url 'products:product_detail' product.slug %}">
 							<li>
 								<img src="{{product.image.url}}" title="" alt="{{product.name}}" />
@@ -557,35 +565,36 @@
 										</div>
 									</div>
 								</div>
+
 								<!-- pagination -->
-	{% if product_list.has_other_pages %}
-		<ul class="pagination pagination-sm">
-		
-			<!-- previous -->
-			{% if product_list.has_previous %}
-				<li><a href="?page={{ product_list.previous_page_number }}">Prev</a></li>
-			{% else %}
-				<li class="disable"></li>
-			{% endif %}
+								{% if product_list.has_other_pages %}
+									<ul class="pagination pagination-sm">
+									
+										<!-- previous -->
+										{% if product_list.has_previous %}
+											<li><a href="?page={{ product_list.previous_page_number }}">Prev</a></li>
+										{% else %}
+											<li class="disable"></li>
+										{% endif %}
 
-			<!-- current -->
-			{% for pages in product_list.paginator.page_range %}
-				{% if product_list.number == pages %}
-					<li><a href="#">{{pages}}</a></li>
-				{% else %}
-					<li><a href="?page={{pages}}">{{pages}}</a></li>
-				{% endif %}	
-			{% endfor %}
+										<!-- current -->
+										{% for pages in product_list.paginator.page_range %}
+											{% if product_list.number == pages %}
+												<li><a href="#">{{pages}}</a></li>
+											{% else %}
+												<li><a href="?page={{pages}}">{{pages}}</a></li>
+											{% endif %}	
+										{% endfor %}
 
-			<!-- next -->
-			{% if product_list.has_next %}
-				<li><a href="?page={{ product_list.next_page_number }}">Next</a></li>
-			{% else %}
-				<li class="disable"></li>
-			{% endif %}
-				
-		</ul>
-	{% endif %}		
+										<!-- next -->
+										{% if product_list.has_next %}
+											<li><a href="?page={{ product_list.next_page_number }}">Next</a></li>
+										{% else %}
+											<li class="disable"></li>
+										{% endif %}
+											
+									</ul>
+								{% endif %}		
 
 								<!-- ends pagination -->
 							</div>

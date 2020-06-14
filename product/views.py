@@ -1,14 +1,17 @@
 # product/views.py
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from . models import Product, ProductImages 
+from . models import Product, ProductImages, Category 
+from django.db.models import Count
 
 # Create your views here.
 def productlist(request):
 	
 	## 4 STEPS TO LOAD AND DISPLAY THE INFORMATION FROM THE DB
 	# 1. Get all products from db
-	productlist = Product.objects.all()
+	productlist  = Product.objects.all()
+	# categorylist = Category.objects.all()
+	categorylist = Category.objects.annotate(total_products=Count('product')) # total_products is based on the 'category rel with Product - One-to-Many'
 	# test
 	# print(productlist)
 	# result: <QuerySet [<Product: Lenovo A588T>, <Product: iPhone 11 Pro>]>
@@ -21,7 +24,7 @@ def productlist(request):
 	productlist = paginator.get_page(page)	
 
 	# 3. Store the information in variable context
-	context = {'product_list': productlist}
+	context = {'product_list': productlist, 'category_list': categorylist}
 	# 4. Render the informatio to template
 	return render(request, template, context)
 
